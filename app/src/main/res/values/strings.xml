@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Respond-Us</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="head_1">My Profile</string>
+
+
+    <string name="head_2">My Family</string>
+    <string name="head_3">Health Information</string>
+    <string name="head_4">Incident List</string>
+    <string name="head_5">Accidents Around Me</string>
+</resources>
