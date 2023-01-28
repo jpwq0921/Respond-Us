@@ -8,15 +8,17 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.MenuItem;
-import android.view.WindowManager;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
+    public static final String SHARED_PREFS = "sharedPrefs";
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mAuth = FirebaseAuth.getInstance();
+
 
         drawer=findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -50,13 +54,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new Home()).commit();
                 break;
             case R.id.nav_profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new MyProfileFragment()).commit();
+                Intent intent = new Intent(MainActivity.this,MyProfile.class);
+                startActivity(intent);
                 break;
+            case R.id.nav_logout:
+
+                /*SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("name", "");
+                editor.apply();
+
+                Intent intent1 = new Intent(getApplicationContext(),Login.class);
+                startActivity(intent1);
+                finish();*/
+                mAuth.signOut();
+                signOutUser();
+                break;
+
+            case R.id.nav_sos:
+                Intent intent2 = new Intent(MainActivity.this,SOS.class);
+                startActivity(intent2);
+                break;
+
 
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void signOutUser() {
+        Intent intent1 = new Intent(MainActivity.this,Login.class);
+        startActivity(intent1);
     }
 
 

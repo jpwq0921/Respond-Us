@@ -76,10 +76,28 @@ public class Home extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
         cardProfile = view.findViewById(R.id.cardProfile);
+        cardSOS = view.findViewById(R.id.cardSOS);
+        cardFamily = view.findViewById(R.id.cardFamily);
         cardProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), MyProfile.class);
+                startActivity(intent);
+            }
+        });
+
+        cardSOS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),SOS.class);
+                startActivity(intent);
+            }
+        });
+
+        cardFamily.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),GroupFamily.class);
                 startActivity(intent);
             }
         });
