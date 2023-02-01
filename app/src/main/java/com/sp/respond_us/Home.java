@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.lang.reflect.Array;
+import java.net.InetSocketAddress;
 import java.util.ArrayList;
 
 /**
@@ -99,6 +100,13 @@ public class Home extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(),GroupFamily.class);
                 startActivity(intent);
+            }
+        });
+
+        cardIncidents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),IncidentActivity.class);
             }
         });
         return view;

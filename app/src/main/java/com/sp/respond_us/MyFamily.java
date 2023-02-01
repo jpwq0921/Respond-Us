@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ public class MyFamily extends AppCompatActivity    {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private SearchAdapter adapter;
     private CollectionReference userRef = db.collection("user");
+    SearchModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,27 +56,18 @@ public class MyFamily extends AppCompatActivity    {
             public void OnItemClick(DocumentSnapshot documentSnapshot, int position) {
                 SearchModel searchModel = documentSnapshot.toObject(SearchModel.class);
                 String id = documentSnapshot.getId();
-                Toast.makeText(MyFamily.this,"gay!",Toast.LENGTH_LONG).show();
+                //Toast.makeText(MyFamily.this,"Postion!" + position + "ID" + id,Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MyFamily.this,OpenSearchedUser.class);
+                intent.putExtra("key",id);
+                startActivity(intent);
+
+
             }
         });
     }
 
 
 
-    /*private class SearchViewHolder extends RecyclerView.ViewHolder{
-
-        private TextView search_userName;
-        private TextView search_email;
-        private TextView search_phoneNumber;
-
-        public SearchViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            search_userName = findViewById(R.id.search_name);
-            search_email = findViewById(R.id.search_email);
-            search_phoneNumber = findViewById(R.id.search_phoneNumber);
-        }
-    }*/
 
     @Override
     protected void onStart() {

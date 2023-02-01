@@ -1,5 +1,6 @@
 package com.sp.respond_us;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 
 public class SearchAdapter extends FirestoreRecyclerAdapter<SearchModel, SearchAdapter.SearchHolder> {
     private OnItemClickListener listener;
-
+    private String uid = "";
     public SearchAdapter(@NonNull FirestoreRecyclerOptions<SearchModel> options) {
         super(options);
     }
@@ -24,6 +25,7 @@ public class SearchAdapter extends FirestoreRecyclerAdapter<SearchModel, SearchA
             holder.search_Name.setText(model.getUsername());
             holder.search_Phone.setText(model.getPhoneNumber());
             holder.search_email.setText(model.getEmail());
+            //uid = model.getuID();
     }
 
     @NonNull
@@ -52,6 +54,13 @@ public class SearchAdapter extends FirestoreRecyclerAdapter<SearchModel, SearchA
                     int position = getAdapterPosition();
                     if(position != RecyclerView.NO_POSITION && listener != null){
                         listener.OnItemClick(getSnapshots().getSnapshot(position),position);
+
+                        /*Intent i = new Intent(itemView.getContext(),OpenSearchedUser.class);
+                        //i.putExtra("uID", uid);
+                        i.putExtra("userName",search_Name.getText().toString());
+                        i.putExtra("phoneNumber",search_Phone.getText().toString());
+                        i.putExtra("email",search_email.getText().toString());
+                        itemView.getContext().startActivity(i);*/
                     }
                 }
             });

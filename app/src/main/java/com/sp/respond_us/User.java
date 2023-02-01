@@ -2,7 +2,7 @@ package com.sp.respond_us;
 
 public class User {
 
-    public String phoneNumber, email, username;
+    public String phoneNumber, email, username, uID;
 
     /*public String getPhoneNumber() {
         return phoneNumber;
@@ -36,10 +36,11 @@ public class User {
         this.password = password;
     }*/
 
-    public User(String phoneNumber, String email, String username) {
+    public User(String phoneNumber, String email, String username, String uID) {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.username = username;
+        this.uID = uID;
         //this.password = password;
     }
 

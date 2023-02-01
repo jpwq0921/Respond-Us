@@ -84,6 +84,7 @@ public class Register extends AppCompatActivity  {
                 String phoneNumber = signupPhone.getText().toString().trim();
                 String email = signupEmail.getText().toString().trim();
 
+
                 if(TextUtils.isEmpty(userName)){
                     Toast.makeText(Register.this,"Please enter your username", Toast.LENGTH_LONG).show();
                     signupUsername.setError("Username required!");
@@ -129,6 +130,7 @@ public class Register extends AppCompatActivity  {
                     user.put("userName", userName);
                     user.put("phoneNumber", phoneNumber);
                     user.put("email", email);
+                    user.put("uID", firebaseUser.getUid());
 
                     //User user = new User(phoneNumber,email,userName);
 

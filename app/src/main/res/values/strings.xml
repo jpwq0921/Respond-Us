@@ -12,4 +12,5 @@
     <string name="head_3">Health Information</string>
     <string name="head_4">Incident List</string>
     <string name="head_5">Accidents Around Me</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
