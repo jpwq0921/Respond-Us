@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.core.content.PackageManagerCompat;
 
 import android.Manifest;
@@ -17,6 +18,7 @@ import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -37,6 +39,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -120,7 +124,12 @@ public class updateProfile extends AppCompatActivity {
             }
         });
 
-
+        updateFromPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dispatchTakePictureIntent();
+            }
+        });
 
 
         userId = fAuth.getCurrentUser().getUid();
@@ -164,6 +173,40 @@ public class updateProfile extends AppCompatActivity {
 
 
     }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            updateImage.setImageBitmap(imageBitmap);
+            uri = saveImageToUri(imageBitmap);
+        }
+    }
+
+    private Uri saveImageToUri(Bitmap image) {
+        // Create a file to save the image
+        File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "image.jpg");
+        try (FileOutputStream out = new FileOutputStream(file)) {
+            // Compress the bitmap into the file
+            image.compress(Bitmap.CompressFormat.JPEG, 100, out);
+        } catch (IOException e) {
+            Log.e("saveImageToUri", e.getMessage());
+        }
+        // Return the file's Uri
+        return FileProvider.getUriForFile(this, getPackageName() + ".provider", file);
+    }
+
 
     private void imageChooser() {
         Intent i = new Intent();

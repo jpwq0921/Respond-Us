@@ -79,6 +79,7 @@ public class Home extends Fragment {
         cardProfile = view.findViewById(R.id.cardProfile);
         cardSOS = view.findViewById(R.id.cardSOS);
         cardFamily = view.findViewById(R.id.cardFamily);
+        cardIncidents = view.findViewById(R.id.cardIncidents);
         cardProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,6 +108,7 @@ public class Home extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(),IncidentActivity.class);
+                startActivity(intent);
             }
         });
         return view;

@@ -145,7 +145,7 @@ public class SOS extends AppCompatActivity {
             latitude = gpsTracker.getLatitude();
             longitude = gpsTracker.getLongitude();
 
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
             String currentTime = simpleDateFormat.format(new Date());
 
             SimpleDateFormat simpleDayFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -157,9 +157,10 @@ public class SOS extends AppCompatActivity {
             location.put("timeOfIncident",currentTime);
             location.put("dateOfIncident",currentDate);
             location.put("offenderName",offenderName);
+            location.put("timestamp",FieldValue.serverTimestamp());
 
-            db.collection("user").document(userID).collection("incidents").document()
-                    .set(location, SetOptions.merge());
+            /*db.collection("user").document(userID).collection("incidents").document()
+                    .set(location, SetOptions.merge());*/
 
             db.collection("incidents").document().set(location,SetOptions.merge());
 
@@ -173,7 +174,8 @@ public class SOS extends AppCompatActivity {
                         }
                         for (String uid : uids) {
                             db.collection("user").document(uid).collection("incidents").document()
-                                    .set(location,SetOptions.merge());                        }
+                                    .set(location, SetOptions.merge());
+                        }
                     }
                 }
             });
