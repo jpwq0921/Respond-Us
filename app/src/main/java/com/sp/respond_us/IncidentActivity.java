@@ -7,11 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ClipData;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -21,6 +24,7 @@ public class IncidentActivity extends AppCompatActivity {
 
     private CollectionReference incidentRef;
     private IncidentAdapter adapter;
+    Incident model;
 
     String userID;
     @Override
@@ -47,6 +51,21 @@ public class IncidentActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
+        adapter.setOnItemClickListener(new IncidentAdapter.OnItemClickListener(){
+
+            @Override
+            public void OnItemClick(DocumentSnapshot documentSnapshot, int position) {
+                //Incident searchModel = documentSnapshot.toObject(SearchModel.class);
+                String id = documentSnapshot.getId();
+                Toast.makeText(IncidentActivity.this,"Postion!" + position + "ID" + id,Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(IncidentActivity.this ,MapsActivity.class);
+                intent.putExtra("key",id);
+                startActivity(intent);
+
+                //Open into google maps with polyline
+            }
+        });
 
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,

@@ -56,7 +56,7 @@ public class MyFamily extends AppCompatActivity    {
             public void OnItemClick(DocumentSnapshot documentSnapshot, int position) {
                 SearchModel searchModel = documentSnapshot.toObject(SearchModel.class);
                 String id = documentSnapshot.getId();
-                //Toast.makeText(MyFamily.this,"Postion!" + position + "ID" + id,Toast.LENGTH_LONG).show();
+                Toast.makeText(MyFamily.this,"Postion!" + position + "ID" + id,Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MyFamily.this,OpenSearchedUser.class);
                 intent.putExtra("key",id);
                 startActivity(intent);

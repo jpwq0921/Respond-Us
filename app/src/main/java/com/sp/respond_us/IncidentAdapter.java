@@ -10,9 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 public class IncidentAdapter extends FirestoreRecyclerAdapter<Incident, IncidentAdapter.IncidentHolder> {
 
+    private IncidentAdapter.OnItemClickListener listener;
 
     public IncidentAdapter(@NonNull FirestoreRecyclerOptions<Incident> options) {
         super(options);
@@ -48,6 +50,23 @@ public class IncidentAdapter extends FirestoreRecyclerAdapter<Incident, Incident
             textViewDate = itemView.findViewById(R.id.text_view_date);
             textViewTime = itemView.findViewById(R.id.text_view_time);
             textViewName = itemView.findViewById(R.id.text_view_name);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if(position != RecyclerView.NO_POSITION && listener != null){
+                        listener.OnItemClick(getSnapshots().getSnapshot(position),position);
+                    }
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener{
+        void OnItemClick(DocumentSnapshot documentSnapshot, int position);
+    }
+    public void setOnItemClickListener(IncidentAdapter.OnItemClickListener listener){
+        this.listener = listener;
     }
 }

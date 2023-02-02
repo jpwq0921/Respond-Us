@@ -157,6 +157,7 @@ public class SOS extends AppCompatActivity {
             location.put("timeOfIncident",currentTime);
             location.put("dateOfIncident",currentDate);
             location.put("offenderName",offenderName);
+            location.put("offenderID",userID);
             location.put("timestamp",FieldValue.serverTimestamp());
 
             /*db.collection("user").document(userID).collection("incidents").document()

@@ -13,4 +13,5 @@
     <string name="head_4">Incident List</string>
     <string name="head_5">Accidents Around Me</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_maps2">MapsActivity2</string>
 </resources>
