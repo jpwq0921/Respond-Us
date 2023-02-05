@@ -14,15 +14,16 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AccelerometerFallService extends Service implements SensorEventListener{
+public class AccelerometerFallService extends Service implements SensorEventListener {
     public AccelerometerFallService() {
     }
 
-    @Override
+    /*@Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
-    }
+    }*/
+
     int count = 1;
     private boolean init;
     private Sensor mySensor;
@@ -63,10 +64,19 @@ public class AccelerometerFallService extends Service implements SensorEventList
                     mLastShakeTime = curTime;
                     Toast.makeText(getApplicationContext(), "FALL DETECTED",
                             Toast.LENGTH_LONG).show();
+                    Intent intent;
+                    intent = new Intent(this, SOS.class);
+                    startActivity(intent);
                 }
             }
         }
     }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
 
 
     public int onStartCommand(Intent intent, int flags, int startId) {
