@@ -3,6 +3,7 @@ package com.sp.respond_us;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
@@ -50,8 +51,8 @@ public class SOS extends AppCompatActivity {
 
     TextView location = null;
     private GPSTracker gpsTracker;
-    private double latitude;
-    private double longitude;
+    private double latitude =0.0d;
+    private double longitude = 0.0d;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -229,5 +230,12 @@ public class SOS extends AppCompatActivity {
         vibrator.cancel();
         super.onDestroy();
         gpsTracker.stopUsingGPS();
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+        startActivity(new Intent(this,MainActivity.class));
     }
 }

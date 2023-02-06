@@ -131,4 +131,10 @@ public class OpenSearchedUser extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(this,MyFamily.class));
+    }
 }

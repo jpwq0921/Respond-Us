@@ -80,4 +80,11 @@ public class MyFamily extends AppCompatActivity    {
         super.onStop();
         adapter.stopListening();
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+        startActivity(new Intent(this,MainActivity.class));
+    }
 }

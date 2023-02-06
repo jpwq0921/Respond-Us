@@ -23,7 +23,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RespondUs"
         tools:targetApi="31">
-
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -37,7 +36,8 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDcF0q8eqN-8vz_mPNSG5ncSU2K5s23r2I" />
+            android:value="AIzaSyAmh3IT_2ly9FnuHkkVq14img2yH9u2z_E" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

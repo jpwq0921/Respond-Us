@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,6 +81,7 @@ public class Home extends Fragment {
         cardSOS = view.findViewById(R.id.cardSOS);
         cardFamily = view.findViewById(R.id.cardFamily);
         cardIncidents = view.findViewById(R.id.cardIncidents);
+        cardHealth = view.findViewById(R.id.cardHealth);
         cardProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,6 +111,17 @@ public class Home extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(),IncidentActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        cardHealth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment newFragment = new VideoFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.ll, newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
         return view;

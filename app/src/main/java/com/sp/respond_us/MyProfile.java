@@ -53,6 +53,7 @@ public class MyProfile extends AppCompatActivity {
         update = findViewById(R.id.updateProfile);
         profilePfp = findViewById(R.id.profileImage);
 
+
         db =FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
         storage = FirebaseStorage.getInstance();
@@ -103,5 +104,12 @@ public class MyProfile extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+        startActivity(new Intent(this,MainActivity.class));
     }
 }

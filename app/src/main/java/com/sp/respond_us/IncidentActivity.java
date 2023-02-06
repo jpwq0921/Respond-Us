@@ -14,16 +14,22 @@ import android.widget.Toast;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+
+
 
 public class IncidentActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     private CollectionReference incidentRef;
+    private DocumentReference actualIncident;
     private IncidentAdapter adapter;
+    private double latitude = 0.0d;
+    private double longitude = 0.0d;
     Incident model;
 
     String userID;
@@ -58,9 +64,14 @@ public class IncidentActivity extends AppCompatActivity {
             public void OnItemClick(DocumentSnapshot documentSnapshot, int position) {
                 //Incident searchModel = documentSnapshot.toObject(SearchModel.class);
                 String id = documentSnapshot.getId();
-                Toast.makeText(IncidentActivity.this,"Postion!" + position + "ID" + id,Toast.LENGTH_LONG).show();
+                latitude=documentSnapshot.getDouble("latitude");
+                longitude=documentSnapshot.getDouble("longitude");
+
+                //Toast.makeText(IncidentActivity.this,latitude + " and "  + longitude,Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(IncidentActivity.this ,MapsActivity.class);
                 intent.putExtra("key",id);
+                intent.putExtra("lat",latitude);
+                intent.putExtra("lon",longitude);
                 startActivity(intent);
 
                 //Open into google maps with polyline
@@ -93,5 +104,12 @@ public class IncidentActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+        startActivity(new Intent(this,MainActivity.class));
     }
 }

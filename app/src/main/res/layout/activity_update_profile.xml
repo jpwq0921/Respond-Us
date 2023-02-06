@@ -1,66 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".updateProfile">
+    tools:context=".updateProfile"
+    android:orientation="vertical"
+    android:background="@drawable/gradient">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/updateImage"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        <Button
-            android:id="@+id/galleryUpdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Take from gallery" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/brandon_grotesque_black"
+                android:text="Update Profile"
+                android:textSize="40dp" />
 
-        <Button
-            android:id="@+id/phoneCameraUpdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Take from phone" />
+            <ImageView
+                android:id="@+id/updateImage"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="110dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="20dp"
+                tools:srcCompat="@tools:sample/avatars" />
 
-        <EditText
-            android:id="@+id/updateUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:hint="Name" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/galleryUpdate"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="220dp"
+                android:backgroundTint="@color/verydarkpink"
+                android:fontFamily="@font/brandon_grotesque_black"
+                android:text="Gallery" />
 
-        <EditText
-            android:id="@+id/updatePhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:hint="PhoneNumber" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/phoneCameraUpdate"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="215dp"
+                android:layout_marginTop="220dp"
+                android:layout_marginRight="15dp"
+                android:fontFamily="@font/brandon_grotesque_black"
+                android:backgroundTint="@color/verydarkpink"
+                android:text="Camera" />
 
-        <EditText
-            android:id="@+id/updateEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:hint="Email" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="300dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
 
-        <Button
-            android:id="@+id/updateButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
 
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Username"
+                    app:boxCornerRadiusBottomEnd="15dp"
+                    app:boxCornerRadiusTopEnd="15dp"
+                    app:boxCornerRadiusBottomStart="15dp"
+                    app:boxCornerRadiusTopStart="15dp"
+                    android:layout_marginBottom="10dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/updateUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_baseline_drive_file_rename_outline_24"
+                    android:drawablePadding="15dp"
+                    android:text="Username"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone Number"
+                    app:boxCornerRadiusBottomEnd="15dp"
+                    app:boxCornerRadiusTopEnd="15dp"
+                    app:boxCornerRadiusBottomStart="15dp"
+                    app:boxCornerRadiusTopStart="15dp"
+                    android:layout_marginBottom="10dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/updatePhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_baseline_local_phone_24"
+                        android:drawablePadding="15dp"
+                        android:text="Phone"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    app:boxCornerRadiusBottomEnd="15dp"
+                    app:boxCornerRadiusTopEnd="15dp"
+                    app:boxCornerRadiusBottomStart="15dp"
+                    app:boxCornerRadiusTopStart="15dp"
+                    android:layout_marginBottom="10dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/updateEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_baseline_email_24"
+                        android:drawablePadding="15dp"
+                        android:text="Email"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Medical Conditions"
+                    app:boxCornerRadiusBottomEnd="15dp"
+                    app:boxCornerRadiusTopEnd="15dp"
+                    app:boxCornerRadiusBottomStart="15dp"
+                    app:boxCornerRadiusTopStart="15dp"
+                    android:layout_marginBottom="10dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/updateMedicalConditions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_baseline_medical_information_24"
+                        android:drawablePadding="15dp"
+                        android:text="Medical Conditions"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Blood Type"
+                    app:boxCornerRadiusBottomEnd="15dp"
+                    app:boxCornerRadiusTopEnd="15dp"
+                    app:boxCornerRadiusBottomStart="15dp"
+                    app:boxCornerRadiusTopStart="15dp"
+                    android:layout_marginBottom="10dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/updateBloodType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_baseline_bloodtype_24"
+                        android:drawablePadding="15dp"
+                        android:text="Blood Type"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Allergies"
+                    app:boxCornerRadiusBottomEnd="15dp"
+                    app:boxCornerRadiusTopEnd="15dp"
+                    app:boxCornerRadiusBottomStart="15dp"
+                    app:boxCornerRadiusTopStart="15dp"
+                    android:layout_marginBottom="10dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/updateAllergies"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_baseline_do_not_touch_24"
+                        android:drawablePadding="15dp"
+                        android:text="Allergies"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Address"
+                    app:boxCornerRadiusBottomEnd="15dp"
+                    app:boxCornerRadiusTopEnd="15dp"
+                    app:boxCornerRadiusBottomStart="15dp"
+                    app:boxCornerRadiusTopStart="15dp"
+                    android:layout_marginBottom="10dp"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/updateAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_baseline_house_24"
+                        android:drawablePadding="15dp"
+                        android:text="Address"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/updateButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/lightestpink"
+                android:fontFamily="@font/brandon_grotesque_black"
+                android:layout_marginTop="780dp"
+                android:text="Update!" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</LinearLayout>

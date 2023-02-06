@@ -96,6 +96,7 @@ public class updateProfile extends AppCompatActivity {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                 updateImage.setImageBitmap(bitmap);
 
+
             }
         });
 
@@ -172,6 +173,13 @@ public class updateProfile extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+        startActivity(new Intent(this,MyProfile.class));
     }
 
     private void dispatchTakePictureIntent() {

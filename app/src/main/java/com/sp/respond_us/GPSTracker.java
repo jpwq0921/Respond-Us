@@ -27,6 +27,8 @@ GPSTracker extends Service implements LocationListener{
     double latitude;
     double longitude;
 
+
+
     //The min distance to change Updates in meters
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; //10 meters
     //The min time between updates in milliseconds
