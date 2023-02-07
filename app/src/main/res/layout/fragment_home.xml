@@ -243,13 +243,13 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/ic_baseline_car_crash_24" />
+                    android:src="@drawable/ic_baseline_exit_to_app_24" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/brandon_grotesque_black"
-                    android:text="Accidents "
+                    android:text="Logout "
                     android:textColor="@color/grey"
                     android:textSize="16dp" />
 
@@ -300,4 +300,5 @@
 
 
     </GridLayout>
+
 </RelativeLayout>

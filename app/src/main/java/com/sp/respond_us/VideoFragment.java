@@ -64,9 +64,9 @@ public class VideoFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_video, container, false);
-        webView = view.findViewById(R.id.webview);
+        /*webView = view.findViewById(R.id.webview);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("https://www.youtube.com/embed/watch?v=nJRKPHhdk58");
+        webView.loadUrl("https://www.youtube.com/embed/watch?v=nJRKPHhdk58");*/
         return view;
     }
     @Override

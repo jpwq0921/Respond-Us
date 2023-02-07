@@ -4,13 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GroupFamily">
+    tools:context=".GroupFamily"
+    android:background="@drawable/gradient">
 
-    <Button
-        android:id="@+id/searchformembers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Family"
+            android:fontFamily="@font/brandon_grotesque_black"
+            android:gravity="center"
+            android:textSize="50dp"
+            android:layout_margin="10dp"
+            android:textColor="@color/black"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/searchformembers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search For Family Members"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

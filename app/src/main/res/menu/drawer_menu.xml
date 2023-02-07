@@ -24,7 +24,7 @@
         <item
             android:id="@+id/nav_medical"
             android:icon="@drawable/ic_baseline_medical_information_24"
-            android:title="Medical Info" />
+            android:title="First Aid" />
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_baseline_settings_24"
@@ -41,10 +41,6 @@
                     android:icon="@drawable/ic_baseline_list_alt_24"
                     android:title="Incident List" />
                 <item
-                    android:id="@+id/nav_crashes"
-                    android:icon="@drawable/ic_baseline_car_crash_24"
-                    android:title="Accidents Near Me" />
-                <item
                     android:id="@+id/nav_sos"
                     android:icon="@drawable/ic_baseline_report_problem_24"
                     android:title="SOS" />
@@ -55,10 +51,6 @@
 
     <item android:title="Others">
         <menu>
-            <item
-                android:id="@+id/nav_info"
-                android:icon="@drawable/ic_baseline_info_24"
-                android:title="About" />
 
 
             <item

@@ -15,6 +15,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -47,14 +49,14 @@ import java.util.Map;
 
 public class updateProfile extends AppCompatActivity {
     Button updateButton, updateFromGallery, updateFromPhone;
-    EditText updateUsername,updatePhone,updateEmail;
+    EditText updateUsername,updatePhone,updateEmail,updateMedicalConditions,updateBloodType,updateAllergies,updateDescription;
     ImageView updateImage;
     private FirebaseFirestore db;
     private FirebaseAuth fAuth;
     String userId;
     public Uri uri;
     FirebaseStorage storage;
-    public String newUsername;
+    public String newUsername,newMedicalConditions,newBloodType,newAllergies,newDescription;
     public String newPhone;
     public String newEmail;
 
@@ -67,6 +69,12 @@ public class updateProfile extends AppCompatActivity {
         updateButton = findViewById(R.id.updateButton);
         updateUsername = findViewById(R.id.updateUsername);
         updatePhone = findViewById(R.id.updatePhone);
+        updateMedicalConditions=findViewById(R.id.updateMedicalConditions);
+        updateBloodType=findViewById(R.id.updateBloodType);
+        updateAllergies=findViewById(R.id.updateAllergies);
+        updateDescription=findViewById(R.id.updateAddress);
+
+
         updateEmail = findViewById(R.id.updateEmail);
         updateFromGallery = findViewById(R.id.galleryUpdate);
         updateFromPhone = findViewById(R.id.phoneCameraUpdate);
@@ -109,6 +117,10 @@ public class updateProfile extends AppCompatActivity {
                 updateUsername.setText(documentSnapshot.getString("userName"));
                 updatePhone.setText(documentSnapshot.getString("phoneNumber"));
                 updateEmail.setText(documentSnapshot.getString("email"));
+                updateMedicalConditions.setText(documentSnapshot.getString("medicalConditions"));
+                updateBloodType.setText(documentSnapshot.getString("blood"));
+                updateAllergies.setText(documentSnapshot.getString("allergies"));
+                updateDescription.setText(documentSnapshot.getString("address"));
             }
         });
 
@@ -145,20 +157,29 @@ public class updateProfile extends AppCompatActivity {
                 newUsername = updateUsername.getText().toString().trim();
                 newPhone = updatePhone.getText().toString().trim();
                 newEmail = updateEmail.getText().toString().trim();
-
-
-
-
-
+                newMedicalConditions = updateMedicalConditions.getText().toString().trim();
+                newBloodType = updateBloodType.getText().toString().trim();
+                newAllergies = updateAllergies.getText().toString().trim();
+                newDescription = updateDescription.getText().toString().trim();
 
                 StorageReference anusref = storageRef.child("images/"+userId);
 
+
+                Uri uri = (Uri) updateImage.getTag();
+                if (uri == null) {
+                    Drawable drawable = updateImage.getDrawable();
+                    if (drawable instanceof BitmapDrawable) {
+                        BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+                        Bitmap bitmap = bitmapDrawable.getBitmap();
+                        //Convert bitmap to a URI object
+                        uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "title", null));
+                    }
+                }
+
                 UploadTask uploadTask =anusref.putFile(uri);
 
-
-
                 db.collection("user").document(userId).update("email", newEmail, "phoneNumber", newPhone, "" +
-                        "userName", newUsername).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        "userName", newUsername,"medicalConditions", newMedicalConditions,"blood",newBloodType,"allergies",newAllergies,"address",newDescription).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(updateProfile.this, "Updated!", Toast.LENGTH_LONG).show();

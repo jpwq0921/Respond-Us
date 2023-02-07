@@ -27,16 +27,16 @@ import java.util.Map;
 
 public class OpenSearchedUser extends AppCompatActivity {
 
-    private Button addButton;
+    private Button addButton, noButton;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     String userId;
-    public String familyName;
+    public String familyName, familyBloodType,familyConditions,familyAllergies,familyDescription;
     public String familyEmail;
     public String familyPhone;
 
-    public String adderName;
+    public String adderName,adderBloodType,adderConditions,adderAllergies,adderDescription;
     public String adderEmail;
     public String adderPhone;
 
@@ -47,14 +47,12 @@ public class OpenSearchedUser extends AppCompatActivity {
         setContentView(R.layout.activity_open_searched_user);
         mAuth = FirebaseAuth.getInstance();
         userId = mAuth.getCurrentUser().getUid();
+        noButton=findViewById(R.id.button);
 
         //SearchModel model = (SearchModel) getIntent().getSerializableExtra("model");
         Intent intent = getIntent();
         String uID = intent.getStringExtra("key");
-        TextView name = findViewById(R.id.openedUsername);
-        TextView openedPhone = findViewById(R.id.openedPhone);
-        TextView openedEmail = findViewById(R.id.openedEmail);
-        TextView openeduID = findViewById(R.id.openeduID);
+
 
         DocumentReference documentReference = db.collection("user").document(uID);
         DocumentReference documentReference1 = db.collection("user").document(userId);
@@ -69,13 +67,15 @@ public class OpenSearchedUser extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 DocumentSnapshot documentSnapshot = task.getResult();
-                name.setText(documentSnapshot.getString("userName"));
-                openedPhone.setText(documentSnapshot.getString("phoneNumber"));
-                openedEmail.setText(documentSnapshot.getString("email"));
 
                 familyName = documentSnapshot.getString("userName");
                 familyPhone = documentSnapshot.getString("phoneNumber");
                 familyEmail = documentSnapshot.getString("email");
+                familyBloodType = documentSnapshot.getString("blood");
+                familyConditions = documentSnapshot.getString("medicalConditions");
+                familyAllergies = documentSnapshot.getString("allergies");
+                familyDescription = documentSnapshot.getString("address");
+
             }
         });
 
@@ -86,6 +86,10 @@ public class OpenSearchedUser extends AppCompatActivity {
                 adderName = documentSnapshot.getString("userName");
                 adderPhone = documentSnapshot.getString("phoneNumber");
                 adderEmail = documentSnapshot.getString("email");
+                adderBloodType = documentSnapshot.getString("blood");
+                adderConditions = documentSnapshot.getString("medicalConditions");
+                adderAllergies = documentSnapshot.getString("allergies");
+                adderDescription = documentSnapshot.getString("address");
             }
         });
 
@@ -97,7 +101,6 @@ public class OpenSearchedUser extends AppCompatActivity {
         addButton = findViewById(R.id.addButton);
 
 
-        openeduID.setText(uID);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,23 +109,44 @@ public class OpenSearchedUser extends AppCompatActivity {
                 user.put("userName", familyName);
                 user.put("phoneNumber",familyPhone);
                 user.put("email",familyEmail);
+                user.put("blood",
+                        familyBloodType);
+                user.put("medicalConditions",familyConditions);
+                user.put("allergies",familyAllergies);
+                user.put("address",familyDescription);
+                user.put("uID",uID);
+
 
 
                 Map<String, Object> adder = new HashMap<>();
                 adder.put("userName", adderName);
                 adder.put("phoneNumber",adderPhone);
                 adder.put("email",adderEmail);
+                adder.put("blood",
+                        adderBloodType);
+                adder.put("medicalConditions",adderConditions);
+                adder.put("allergies",adderAllergies);
+                adder.put("address",adderDescription);
+                adder.put("uID",userId);
+
 
 
                 //documentReference3.set(user);
                 //documentReference4.set(adder);
-                familyReference.set(user, SetOptions.merge());
-                familyReference2.set(adder,SetOptions.merge());
-                adderReference.set(adder,SetOptions.merge());
-                adderReference2.set(user,SetOptions.merge());
+                familyReference.set(adder, SetOptions.merge());
+                familyReference2.set(user,SetOptions.merge());
+                adderReference.set(user,SetOptions.merge());
+                adderReference2.set(adder,SetOptions.merge());
 
                 Toast.makeText(OpenSearchedUser.this,"Added "+ familyName + " to your family!", Toast.LENGTH_SHORT).show();
 
+            }
+        });
+
+        noButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
             }
         });
 

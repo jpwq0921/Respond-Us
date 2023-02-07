@@ -7,9 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +52,37 @@ public class MyFamily extends AppCompatActivity    {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
+        EditText searchBox = findViewById(R.id.searchBox);
+        searchBox.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Query query1;
+                if(editable.toString().isEmpty()){
+                    query1 = userRef.orderBy("email", Query.Direction.ASCENDING);
+
+                }else{
+                    query1 = userRef.whereEqualTo("userName", editable.toString()).orderBy("uID", Query.Direction.ASCENDING);
+
+                }
+                FirestoreRecyclerOptions<SearchModel> options = new FirestoreRecyclerOptions.Builder<SearchModel>()
+                        .setQuery(query1,SearchModel.class)
+                        .build();
+                adapter.updateOptions(options);
+                adapter.notifyDataSetChanged();
+
+            }
+        });
 
         adapter.setOnItemClickListener(new SearchAdapter.OnItemClickListener(){
 

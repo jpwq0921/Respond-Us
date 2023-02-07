@@ -12,6 +12,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
+import org.w3c.dom.Text;
+
 public class IncidentAdapter extends FirestoreRecyclerAdapter<Incident, IncidentAdapter.IncidentHolder> {
 
     private IncidentAdapter.OnItemClickListener listener;
@@ -25,6 +27,7 @@ public class IncidentAdapter extends FirestoreRecyclerAdapter<Incident, Incident
         holder.textViewDate.setText(model.getDateOfIncident());
         holder.textViewTime.setText(model.getTimeOfIncident());
         holder.textViewName.setText(model.getOffenderName());
+        holder.textViewLocation.setText(model.getAddress());
     }
 
     @NonNull
@@ -44,12 +47,14 @@ public class IncidentAdapter extends FirestoreRecyclerAdapter<Incident, Incident
         TextView textViewDate;
         TextView textViewTime;
         TextView textViewName;
+        TextView textViewLocation;
 
         public IncidentHolder(@NonNull View itemView) {
             super(itemView);
             textViewDate = itemView.findViewById(R.id.text_view_date);
             textViewTime = itemView.findViewById(R.id.text_view_time);
             textViewName = itemView.findViewById(R.id.text_view_name);
+            textViewLocation=itemView.findViewById(R.id.text_view_address);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -77,13 +77,15 @@
                     android:layout_marginBottom="10dp"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/updateUsername"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_baseline_drive_file_rename_outline_24"
-                    android:drawablePadding="15dp"
-                    android:text="Username"/>
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/updateUsername"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_baseline_drive_file_rename_outline_24"
+                        android:drawablePadding="15dp"
+                        android:text="Username"
+                        tools:ignore="TouchTargetSizeCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -207,20 +209,22 @@
                         android:text="Address"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/updateButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/lightestpink"
+                    android:fontFamily="@font/brandon_grotesque_black"
+                    android:layout_marginTop="0dp"
+                    android:text="Update!" />
+
 
 
 
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/updateButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/lightestpink"
-                android:fontFamily="@font/brandon_grotesque_black"
-                android:layout_marginTop="780dp"
-                android:text="Update!" />
+
 
         </RelativeLayout>
     </ScrollView>

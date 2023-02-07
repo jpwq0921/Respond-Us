@@ -47,7 +47,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:21.0.1'
     implementation 'com.google.maps.android:android-maps-utils:0.5+'
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
-    implementation fileTree(dir: 'C:\\Users\\KalliasWolf\\Downloads\\YouTubeAndroidPlayerApi-1.2.2\\libs', include: ['*.aar', '*.jar'], exclude: [])
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

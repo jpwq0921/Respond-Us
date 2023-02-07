@@ -12,20 +12,20 @@
         android:id="@+id/userpfp"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/profile" />
+        android:src="@drawable/ambulance" />
 
     <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:text="Jefferson Pan Wei Quan"
+        android:text="Good Day"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="azurejeff2@gmail.com" />
+        android:text="We hope you have a safe trip" />
 
 </LinearLayout>

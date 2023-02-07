@@ -7,11 +7,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.lang.reflect.Array;
 import java.net.InetSocketAddress;
@@ -32,6 +35,7 @@ public class Home extends Fragment {
     CardView cardIncidents;
     CardView cardAccidents;
     CardView cardSOS;
+    FirebaseAuth mAuth;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -82,6 +86,9 @@ public class Home extends Fragment {
         cardFamily = view.findViewById(R.id.cardFamily);
         cardIncidents = view.findViewById(R.id.cardIncidents);
         cardHealth = view.findViewById(R.id.cardHealth);
+        cardAccidents = view.findViewById(R.id.cardAccidents);
+        mAuth = FirebaseAuth.getInstance();
+
         cardProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,11 +124,20 @@ public class Home extends Fragment {
         cardHealth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment newFragment = new VideoFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.ll, newFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                VideoFragment videoFragment = new VideoFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, videoFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
+        cardAccidents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                signOutUser();
             }
         });
         return view;
@@ -131,6 +147,11 @@ public class Home extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+    }
+
+    private void signOutUser() {
+        Intent intent1 = new Intent(getContext(),Login.class);
+        startActivity(intent1);
     }
 
 

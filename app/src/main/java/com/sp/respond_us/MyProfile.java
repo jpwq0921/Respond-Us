@@ -33,7 +33,7 @@ public class MyProfile extends AppCompatActivity {
 
     ImageButton button;
     Button update;
-    TextView profileName,profileNumber,profileEmail;
+    TextView profileName,profileNumber,profileEmail,profileBloodType,profileMedicalConditions,profileAllergies,profileDescription;
     ImageView profilePfp;
     private FirebaseFirestore db;
     private FirebaseAuth fAuth;
@@ -50,6 +50,10 @@ public class MyProfile extends AppCompatActivity {
         profileName=findViewById(R.id.profileUsername);
         profileNumber=findViewById(R.id.profilePhonenumber);
         profileEmail=findViewById(R.id.profileEmail);
+        profileBloodType=findViewById(R.id.profileBloodType);
+        profileMedicalConditions=findViewById(R.id.profileMedicalConditions);
+        profileAllergies=findViewById(R.id.profileAllergies);
+        profileDescription=findViewById(R.id.profileAddress);
         update = findViewById(R.id.updateProfile);
         profilePfp = findViewById(R.id.profileImage);
 
@@ -82,6 +86,10 @@ public class MyProfile extends AppCompatActivity {
                 profileName.setText(documentSnapshot.getString("userName"));
                 profileNumber.setText(documentSnapshot.getString("phoneNumber"));
                 profileEmail.setText(documentSnapshot.getString("email"));
+                profileBloodType.setText(documentSnapshot.getString("blood"));
+                profileMedicalConditions.setText(documentSnapshot.getString("medicalConditions"));
+                profileAllergies.setText(documentSnapshot.getString("allergies"));
+                profileDescription.setText(documentSnapshot.getString("address"));
             }
         });
 

@@ -75,6 +75,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent2 = new Intent(MainActivity.this,SOS.class);
                 startActivity(intent2);
                 break;
+            case R.id.nav_medical:
+                Intent intent3 = new Intent(MainActivity.this,VideoFragment.class);
+                startActivity(intent3);
+                break;
+            case R.id.nav_settings:
+                Intent intent4 = new Intent(MainActivity.this,updateProfile.class);
+                startActivity(intent4);
+                break;
+            case R.id.nav_incidents:
+                Intent intent5 = new Intent(MainActivity.this,IncidentActivity.class);
+                startActivity(intent5);
+                break;
 
 
         }

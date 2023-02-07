@@ -1,18 +1,206 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient">
 
-    <LinearLayout
-        android:id="@+id/webview_container"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.google.android.youtube.player.YouTubePlayerView
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:id="@+id/youtubePlayerView"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/lightestpink"
+                android:fontFamily="@font/brandon_grotesque_black"
+                android:gravity="center"
+                android:padding="30dp"
+                android:text="EMERGENCY FIRST AID"
+                android:textColor="@color/black"
+                android:textSize="35dp" />
 
-</LinearLayout>
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView111"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Scalds and Burns"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:background="@drawable/ultrarounded"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:autoPlay="false"
+                app:videoId="XGnLkUty69g" />
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Sprains"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:background="@drawable/ultrarounded"
+                android:layout_gravity="center"/>
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:videoId="yrvqNh2q6Tc"
+                app:autoPlay="false" />
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cuts and Bruises"
+                android:gravity="center"
+                android:textSize="30dp"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:background="@drawable/ultrarounded"
+                android:layout_gravity="center"/>
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:videoId="AhANvBB9hz0"
+                app:autoPlay="false" />
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Excessive Bleeding"
+                android:gravity="center"
+                android:textSize="30dp"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:background="@drawable/ultrarounded"
+                android:layout_gravity="center"/>
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:videoId="jYtJS1PtNq0"
+                app:autoPlay="false" />
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Broken Bones"
+                android:gravity="center"
+                android:textSize="30dp"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:background="@drawable/ultrarounded"
+                android:layout_gravity="center"/>
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:videoId="V1YiDNEqOHM"
+                app:autoPlay="false" />
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CPR"
+                android:gravity="center"
+                android:textSize="30dp"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:background="@drawable/ultrarounded"
+                android:layout_gravity="center"/>
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                app:videoId="l-mATMuAJDc"
+                app:autoPlay="false" />
+        </LinearLayout>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+

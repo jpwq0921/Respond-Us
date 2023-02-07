@@ -4,14 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,12 +33,14 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
@@ -61,17 +67,41 @@ public class SOS extends AppCompatActivity {
     public String offenderName;
     ArrayList<String> uids = new ArrayList<>();
     public CollectionReference collectionReference;
+    private boolean red = false;
+    private Handler handler = new Handler();
+    private View layout;
+    String address;
+    private TextView countdownText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sos);
 
-        location = findViewById(R.id.Location);
+
         gpsTracker = new GPSTracker(SOS.this);
+        layout = findViewById(android.R.id.content);
+        handler.post(blink);
 
 
-        getLocation = findViewById(R.id.getLoacation);
+
+        countdownText = findViewById(R.id.countdownText);
+
+        new CountDownTimer(5000, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                progressBar.setProgress((int) (millisUntilFinished / 1000));
+                countdownText.setText(String.valueOf(millisUntilFinished / 1000));
+            }
+
+            @Override
+            public void onFinish() {
+                progressBar.setProgress(0);
+                countdownText.setText("0");
+            }
+        }.start();
+
 
         //mAuth = FirebaseAuth.getInstance();
         collectionReference = db.collection("user").document(userID).collection("dbFamily");
@@ -111,6 +141,7 @@ public class SOS extends AppCompatActivity {
             public void onClick(View view) {
                 myCountDownTimer.cancel();
                 Toast.makeText(SOS.this,"SOS cancelled", Toast.LENGTH_LONG).show();
+                finish();
             }
         });
 
@@ -124,6 +155,19 @@ public class SOS extends AppCompatActivity {
             }
         });
     }
+    private Runnable blink = new Runnable() {
+        @Override
+        public void run() {
+            if (red) {
+                layout.setBackgroundColor(getResources().getColor(android.R.color.white));
+                red = false;
+            } else {
+                layout.setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
+                red = true;
+            }
+            handler.postDelayed(blink, 500);
+        }
+    };
 
     public class MyCountDownTimer extends CountDownTimer {
 
@@ -152,6 +196,17 @@ public class SOS extends AppCompatActivity {
             SimpleDateFormat simpleDayFormat = new SimpleDateFormat("dd/MM/yyyy");
             String currentDate = simpleDayFormat.format(new Date());
 
+            Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+            try {
+                List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+                if (addresses != null && addresses.size() > 0) {
+                    address = addresses.get(0).getAddressLine(0);
+                    // do something with the address
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             Map<String, Object> location = new HashMap<>();
             location.put("latitude", latitude);
             location.put("longitude",longitude);
@@ -160,11 +215,13 @@ public class SOS extends AppCompatActivity {
             location.put("offenderName",offenderName);
             location.put("offenderID",userID);
             location.put("timestamp",FieldValue.serverTimestamp());
+            location.put("address",address);
 
             /*db.collection("user").document(userID).collection("incidents").document()
                     .set(location, SetOptions.merge());*/
 
             db.collection("incidents").document().set(location,SetOptions.merge());
+            Toast.makeText(SOS.this, address, Toast.LENGTH_SHORT).show();
 
             collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
@@ -191,6 +248,7 @@ public class SOS extends AppCompatActivity {
             //Toast.makeText(SOS.this,"Calling for help!", Toast.LENGTH_LONG).show();
         }
     }
+
 
     private void vibratee() {
         long[] pattern = {0,200,10,500};

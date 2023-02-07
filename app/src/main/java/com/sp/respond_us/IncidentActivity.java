@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -57,6 +59,32 @@ public class IncidentActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        Button filterTime = findViewById(R.id.filterTime);
+        Button filterDate = findViewById(R.id.filterDate);
+
+        filterTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Query query1 = incidentRef.orderBy("timestamp", Query.Direction.ASCENDING);
+                FirestoreRecyclerOptions<Incident> optionssss = new FirestoreRecyclerOptions.Builder<Incident>()
+                        .setQuery(query1,Incident.class)
+                        .build();
+                adapter.updateOptions(optionssss);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        filterDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Query query2 = incidentRef.orderBy("dateOfIncident", Query.Direction.DESCENDING);
+                FirestoreRecyclerOptions<Incident> optionss = new FirestoreRecyclerOptions.Builder<Incident>()
+                        .setQuery(query2,Incident.class)
+                        .build();
+                adapter.updateOptions(optionss);
+                adapter.notifyDataSetChanged();
+            }
+        });
 
         adapter.setOnItemClickListener(new IncidentAdapter.OnItemClickListener(){
 
