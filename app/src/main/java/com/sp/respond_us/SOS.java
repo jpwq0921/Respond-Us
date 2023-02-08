@@ -187,6 +187,8 @@ public class SOS extends AppCompatActivity {
 
 
 
+
+
             //Toast.makeText(SOS.this,"Calling for help!", Toast.LENGTH_LONG).show();
         }
     }

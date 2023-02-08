@@ -96,7 +96,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Marker incident = mMap.addMarker(new MarkerOptions().position(ACCIDENT).title(accidentTeeName));
         Marker me = mMap.addMarker(new MarkerOptions().position(ME).title("You").snippet("My Location").icon(BitmapDescriptorFactory
-                .fromResource(R.drawable.youarehere)));
+                .fromResource(R.drawable.happyfamily)));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ACCIDENT));
     }
