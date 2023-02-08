@@ -14,7 +14,7 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AccelerometerFallService extends Service implements SensorEventListener {
+public class AccelerometerFallService extends Service implements SensorEventListener{
     public AccelerometerFallService() {
     }
 
